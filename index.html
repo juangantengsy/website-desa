@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beranda - Desa Kelotok</title>
+  <style>
+    /* Reset dan styling dasar */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0;
+      background-color: #f4f6f8;
+      color: #333;
+    }
+    header {
+      background-color: #003049;
+      color: white;
+      padding: 15px 25px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      color: #dbe9f4;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      background-color: #f77f00;
+      color: white;
+    }
+    /* Hamburger Menu for Mobile */
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background-color: #003049;
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 220px;
+        height: calc(100% - 60px);
+        padding-top: 20px;
+        gap: 20px;
+        transition: right 0.3s ease;
+      }
+      nav ul.show {
+        right: 0;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Slider */
+    .slider {
+      position: relative;
+      max-width: 100%;
+      height: 450px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    .slides {
+      display: flex;
+      width: 300%;
+      animation: slideAnimation 15s infinite;
+    }
+    .slides img {
+      width: 100%;
+      object-fit: cover;
+      height: 450px;
+    }
+    @keyframes slideAnimation {
+      0% { transform: translateX(0%); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0%); }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px 40px;
+    }
+
+    /* Sambutan */
+    .welcome {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 40px;
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    }
+    .welcome img {
+      width: 180px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .welcome-text {
+      flex: 1;
+    }
+    .welcome-text h2 {
+      margin-top: 0;
+      color: #003049;
+    }
+    .welcome-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* Statistik */
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .stat-item {
+      background-color: white;
+      flex: 1;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      text-align: center;
+    }
+    .stat-item h3 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #f77f00;
+    }
+    .stat-item p {
+      margin: 10px 0 0;
+      font-weight: 600;
+      color: #003049;
+    }
+
+    /* Berita */
+    .news {
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 40px;
+    }
+    .news h2 {
+      margin-top: 0;
+      color: #003049;
+    }
+    .news-item {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+    .news-item:last-child {
+      border-bottom: none;
+    }
+    .news-item h3 {
+      margin: 0 0 8px;
+      color: #f77f00;
+    }
+    .news-item p {
+      margin: 0;
+      color: #555;
+    }
+
+    /* Layanan */
+    .services {
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 40px;
+    }
+    .services h2 {
+      margin-top: 0;
+      color: #003049;
+      margin-bottom: 20px;
+    }
+    .service-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .service-list li {
+      background-color: #f77f00;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      flex: 1 1 30%;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: 0 1px 5px rgb(0 0 0 / 0.2);
+    }
+
+    /* Testimoni */
+    .testimonials {
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 40px;
+    }
+    .testimonials h2 {
+      color: #003049;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .testimonial-item {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .testimonial-author {
+      text-align: right;
+      font-weight: 600;
+      color: #f77f00;
+      margin-top: 0;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #003049;
+      color: white;
+      text-align: center;
+      padding: 20px 15px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Desa Kelotok</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+    <nav>
+      <ul id="navLinks">
+        <li><a href="index.html" class="active">Beranda</a></li>
+        <li><a href="profil.html">Profil Desa</a></li>
+        <li><a href="data.html">Data Penduduk</a></li>
+        <li><a href="berita.html">Berita & Pengumuman</a></li>
+        <li><a href="galeri.html">Galeri Foto</a></li>
+        <li><a href="layanan.html">Layanan & Pelayanan</a></li>
+        <li><a href="aspirasi.html">Aspirasi & Pengaduan</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="slider">
+    <div class="slides">
+      <img src="slide1.jpg/Gambar WhatsApp 2025-06-10 pukul 12.47.26_6c33a218.jpg" alt="Pemandangan Desa 1" />
+      <img src="slide2.jpg/Gambar WhatsApp 2025-06-10 pukul 12.49.49_a88a74e2.jpg" alt="Pemandangan Desa 2" />
+      <img src="slide3.jpg/Gambar WhatsApp 2025-06-10 pukul 12.49.48_338a6844.jpg" alt="Pemandangan Desa 3" />
+      <img src="slide.4.jpg/Gambar WhatsApp 2025-06-10 pukul 12.47.27_1f1659c0.jpg" alt="Pemandangan Desa 3" />
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="welcome">
+      <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Kepala Desa" />
+      <div class="welcome-text">
+        <h2>Sambutan Kepala Desa Kelotok</h2>
+        <p>
+          Selamat datang di situs resmi Desa Kelotok. Kami berkomitmen untuk
+          membangun desa yang maju, mandiri, dan berbudaya. Mari bersama-sama
+          kita jaga dan kembangkan potensi desa demi kesejahteraan seluruh warga.
+        </p>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat-item">
+        <h3>1.250</h3>
+        <p>Jumlah Penduduk</p>
+      </div>
+      <div class="stat-item">
+        <h3>150 Ha</h3>
+        <p>Luas Wilayah</p>
+      </div>
+      <div class="stat-item">
+        <h3>10</h3>
+        <p>Fasilitas Umum</p>
+      </div>
+    </section>
+
+    <section class="news">
+      <h2>Berita Terbaru</h2>
+      <article class="news-item">
+        <h3>Pembukaan Pasar Desa Kelotok</h3>
+        <p>Pasar desa resmi dibuka untuk meningkatkan perekonomian warga pada 1 Juni 2025.</p>
+      </article>
+      <article class="news-item">
+        <h3>Program Gotong Royong Bersih Desa</h3>
+        <p>Semua warga diajak berpartisipasi dalam program kebersihan desa setiap Sabtu pagi.</p>
+      </article>
+      <article class="news-item">
+        <h3>Sumur-sumur kering</h3>
+        <p>Sumur-sumur warga juga terlihat mengering. Ketika dilihat ke dalam, genangan air terlihat jauh di dasar sumur yang dalamnya sekitar 15 meter. Seorang ibu menunjukkan ember besi yang tergeletak di samping sumur, berkerak putih dan tali pengikatnya kering, tanda bahwa alat itu telah lama tak digunakan.</p>
+      </article>
+    </section>
+
+    <section class="services">
+      <h2>Layanan Unggulan Desa</h2>
+      <ul class="service-list">
+        <li>Pelayanan Administrasi Kependudukan</li>
+        <li>Bantuan Sosial dan Kesejahteraan</li>
+        <li>Pembangunan Infrastruktur</li>
+        <li>Pelatihan Keterampilan</li>
+        <li>Wisata Desa dan Budaya</li>
+      </ul>
+    </section>
+
+    <section class="testimonials">
+      <h2>Kepala Desa RT1?RT2</h2>
+      <blockquote class="testimonial-item">"Kepala Desa RT1"</blockquote>
+      <p class="testimonial-author">– Abdullah spd</p>
+      <blockquote class="testimonial-item">"Pelayanan desa sangat ramah dan cepat, membuat kami merasa dihargai."</blockquote>
+      <p class="testimonial-author">– Bapak Andi, Ketua RT 03</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Desa Kelotok | All rights reserved
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>

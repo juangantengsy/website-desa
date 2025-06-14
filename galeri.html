@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desa Kelotok - Galeri Foto</title>
+  <style>
+    /* Reset & dasar */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f7f8fa;
+      color: #222;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #003049;
+      padding: 10px 25px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    .navbar .nav-links li a {
+      color: #dbe9f4;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .navbar .nav-links li a:hover,
+    .navbar .nav-links li a.active {
+      background-color: #f77f00;
+      color: white;
+    }
+    /* Hamburger menu button (hidden on desktop) */
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    /* Responsive mobile */
+    @media (max-width: 768px) {
+      .navbar .nav-links {
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background-color: #003049;
+        width: 200px;
+        height: calc(100% - 60px);
+        padding-top: 20px;
+        gap: 20px;
+        transition: right 0.3s ease;
+      }
+      .navbar .nav-links.show {
+        right: 0;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Container utama */
+    .container {
+      max-width: 960px;
+      margin: 30px auto 60px auto;
+      padding: 20px 25px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Judul */
+    h1 {
+      color: #003049;
+      margin-bottom: 30px;
+      font-size: 2.4rem;
+      border-bottom: 4px solid #f77f00;
+      padding-bottom: 10px;
+      max-width: 280px;
+    }
+
+    /* Grid galeri */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 20px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,48,73,0.7);
+      color: white;
+      text-align: center;
+      padding: 10px 5px;
+      font-size: 1rem;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+    }
+
+    /* Lightbox overlay */
+    .lightbox {
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2000;
+    }
+    .lightbox.show {
+      visibility: visible;
+      opacity: 1;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 25px;
+      right: 30px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      z-index: 2100;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #003049;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Desa Kelotok</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="profil.html">Profil Desa</a></li>
+      <li><a href="data.html">Data Penduduk</a></li>
+      <li><a href="berita.html">Berita & Pengumuman</a></li>
+      <li><a href="galeri.html" class="active">Galeri Foto</a></li>
+      <li><a href="layanan.html">Layanan & Pelayanan</a></li>
+      <li><a href="aspirasi.html">Aspirasi & Pengaduan</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Galeri Foto Kegiatan Desa Kelotok</h1>
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item">
+        <img src="https://source.unsplash.com/600x400/?village,community" alt="Kegiatan Gotong Royong" />
+        <div class="gallery-caption">Gotong Royong Masyarakat</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://source.unsplash.com/600x400/?festival,culture" alt="Festival Desa" />
+        <div class="gallery-caption">Festival Budaya Desa Kelotok</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://source.unsplash.com/600x400/?meeting,people" alt="Rapat Desa" />
+        <div class="gallery-caption">Rapat Musyawarah Desa</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://source.unsplash.com/600x400/?school,children" alt="Anak Sekolah" />
+        <div class="gallery-caption">Kegiatan Sekolah Dasar</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://source.unsplash.com/600x400/?nature,river" alt="Sungai Desa" />
+        <div class="gallery-caption">Pemandangan Sungai Kelotok</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://source.unsplash.com/600x400/?market,village" alt="Pasar Tradisional" />
+        <div class="gallery-caption">Pasar Tradisional Desa</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img src="" alt="Foto Besar" id="lightboxImg" />
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Desa Kelotok. All rights reserved.
+  </footer>
+
+  <script>
+    // Navbar toggle mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    // Lightbox fungsi
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        lightboxImg.src = item.src;
+        lightboxImg.alt = item.alt;
+        lightbox.classList.add('show');
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('show');
+      lightboxImg.src = '';
+      lightboxImg.alt = '';
+    });
+
+    // Tutup lightbox klik di luar gambar
+    lightbox.addEventListener('click', e => {
+      if(e.target === lightbox) {
+        lightbox.classList.remove('show');
+        lightboxImg.src = '';
+        lightboxImg.alt = '';
+      }
+    });
+  </script>
+
+</body>
+</html>

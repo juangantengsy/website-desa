@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desa Kelotok - Data Penduduk</title>
+  <style>
+    /* Reset & dasar */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f0f3f7;
+      color: #333;
+      line-height: 1.5;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #003049;
+      padding: 10px 25px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    .navbar .nav-links li a {
+      color: #dbe9f4;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .navbar .nav-links li a:hover,
+    .navbar .nav-links li a.active {
+      background-color: #f77f00;
+      color: white;
+    }
+    /* Hamburger menu button (hidden on desktop) */
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    /* Responsive mobile */
+    @media (max-width: 768px) {
+      .navbar .nav-links {
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background-color: #003049;
+        width: 200px;
+        height: calc(100% - 60px);
+        padding-top: 20px;
+        gap: 20px;
+        transition: right 0.3s ease;
+      }
+      .navbar .nav-links.show {
+        right: 0;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Container utama */
+    .container {
+      max-width: 1100px;
+      margin: 30px auto 60px auto;
+      padding: 20px 25px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Judul */
+    h1 {
+      color: #003049;
+      margin-bottom: 25px;
+      font-size: 2.4rem;
+      border-bottom: 4px solid #f77f00;
+      padding-bottom: 10px;
+      max-width: 320px;
+    }
+
+    /* Search bar */
+    #searchInput {
+      width: 100%;
+      max-width: 350px;
+      padding: 10px 15px;
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+    }
+    #searchInput:focus {
+      border-color: #f77f00;
+      outline: none;
+    }
+
+    /* Tabel data */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f77f00;
+      color: white;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    tr:hover {
+      background-color: #fef3d6;
+    }
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        display: none;
+      }
+      tr {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        background-color: #fff;
+      }
+      td {
+        padding-left: 50%;
+        position: relative;
+        border: none;
+        border-bottom: 1px solid #eee;
+      }
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        font-weight: 600;
+        color: #f77f00;
+        text-transform: uppercase;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: #003049;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Desa Kelotok</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="profil.html">Profil Desa</a></li>
+      <li><a href="data.html" class="active">Data Penduduk</a></li>
+      <li><a href="berita.html">Berita & Pengumuman</a></li>
+      <li><a href="galeri.html">Galeri Foto</a></li>
+      <li><a href="layanan.html">Layanan & Pelayanan</a></li>
+      <li><a href="aspirasi.html">Aspirasi & Pengaduan</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <!-- Konten Data Penduduk -->
+  <div class="container">
+    <h1>Data Penduduk Desa Kelotok</h1>
+
+    <input type="text" id="searchInput" placeholder="Cari nama atau alamat penduduk..." />
+
+    <table id="dataPenduduk">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Nama</th>
+          <th>Umur</th>
+          <th>Jenis Kelamin</th>
+          <th>Alamat</th>
+          <th>Pekerjaan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="No.">1</td>
+          <td data-label="Nama">Sari Wulandari</td>
+          <td data-label="Umur">28</td>
+          <td data-label="Jenis Kelamin">Perempuan</td>
+          <td data-label="Alamat">Dusun 1 RT 02</td>
+          <td data-label="Pekerjaan">Guru</td>
+        </tr>
+        <tr>
+          <td data-label="No.">2</td>
+          <td data-label="Nama">Budi Santoso</td>
+          <td data-label="Umur">35</td>
+          <td data-label="Jenis Kelamin">Laki-laki</td>
+          <td data-label="Alamat">Dusun 2 RT 05</td>
+          <td data-label="Pekerjaan">Petani</td>
+        </tr>
+        <tr>
+          <td data-label="No.">3</td>
+          <td data-label="Nama">Ratna Sari</td>
+          <td data-label="Umur">42</td>
+          <td data-label="Jenis Kelamin">Perempuan</td>
+          <td data-label="Alamat">Dusun 1 RT 01</td>
+          <td data-label="Pekerjaan">Pedagang</td>
+        </tr>
+        <tr>
+          <td data-label="No.">4</td>
+          <td data-label="Nama">Agus Prasetyo</td>
+          <td data-label="Umur">50</td>
+          <td data-label="Jenis Kelamin">Laki-laki</td>
+          <td data-label="Alamat">Dusun 2 RT 03</td>
+          <td data-label="Pekerjaan">Perangkat Desa</td>
+        </tr>
+        <tr>
+          <td data-label="No.">5</td>
+          <td data-label="Nama">Lina Marlina</td>
+          <td data-label="Umur">31</td>
+          <td data-label="Jenis Kelamin">Perempuan</td>
+          <td data-label="Alamat">Dusun 1 RT 04</td>
+          <td data-label="Pekerjaan">Bidang Kesehatan</td>
+        </tr>
+         <tr>
+          <td data-label="No.">6</td>
+          <td data-label="Nama">Juan</td>
+          <td data-label="Umur">21</td>
+          <td data-label="Jenis Kelamin">Laki-laki</td>
+          <td data-label="Alamat">Dusun 1 RT 04</td>
+          <td data-label="Pekerjaan">Progemers</td>
+        </tr>
+        <tr>
+          <td data-label="No.">7</td>
+          <td data-label="Nama">Sepri</td>
+          <td data-label="Umur">29</td>
+          <td data-label="Jenis Kelamin">Laki-laki</td>
+          <td data-label="Alamat">Dusun 1 RT 04</td>
+          <td data-label="Pekerjaan">Petani</td>
+        </tr>
+        <tr>
+          <td data-label="No.">8</td>
+          <td data-label="Nama">Yuda Patria</td>
+          <td data-label="Umur">28</td>
+          <td data-label="Jenis Kelamin">Laki-laki</td>
+          <td data-label="Alamat">Dusun 1 RT 04</td>
+          <td data-label="Pekerjaan">Petani</td>
+        </tr>
+        <tr>
+          <td data-label="No.">9</td>
+          <td data-label="Nama">Wahyuni Wihartati</td>
+          <td data-label="Umur">24</td>
+          <td data-label="Jenis Kelamin">Perempuan</td>
+          <td data-label="Alamat">Dusun 1 RT 04</td>
+          <td data-label="Pekerjaan">Guru Tk</td>
+        </tr>
+        <tr>
+          <td data-label="No.">10</td>
+          <td data-label="Nama">Laila Ulfatur</td>
+          <td data-label="Umur">23</td>
+          <td data-label="Jenis Kelamin">Perempuan</td>
+          <td data-label="Alamat">Dusun 1 RT 04</td>
+          <td data-label="Pekerjaan">Staf Hotel</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Desa Kelotok. All rights reserved.
+  </footer>
+
+  <script>
+    // Navbar toggle untuk mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    // Fungsi pencarian sederhana untuk tabel data penduduk
+    const searchInput = document.getElementById('searchInput');
+    const table = document.getElementById('dataPenduduk');
+    const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+    searchInput.addEventListener('keyup', function() {
+      const filter = this.value.toLowerCase();
+      for(let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        let textContent = "";
+        for(let j=1; j < cells.length; j++) { // mulai dari 1 supaya gak ikut no.
+          textContent += cells[j].textContent.toLowerCase() + " ";
+        }
+        if(textContent.indexOf(filter) > -1) {
+          rows[i].style.display = "";
+        } else {
+          rows[i].style.display = "none";
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

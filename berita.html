@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desa Kelotok - Berita & Pengumuman</title>
+  <style>
+    /* Reset & dasar */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f7f8fa;
+      color: #222;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #003049;
+      padding: 10px 25px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    .navbar .nav-links li a {
+      color: #dbe9f4;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .navbar .nav-links li a:hover,
+    .navbar .nav-links li a.active {
+      background-color: #f77f00;
+      color: white;
+    }
+    /* Hamburger menu button (hidden on desktop) */
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    /* Responsive mobile */
+    @media (max-width: 768px) {
+      .navbar .nav-links {
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background-color: #003049;
+        width: 200px;
+        height: calc(100% - 60px);
+        padding-top: 20px;
+        gap: 20px;
+        transition: right 0.3s ease;
+      }
+      .navbar .nav-links.show {
+        right: 0;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Container utama */
+    .container {
+      max-width: 900px;
+      margin: 30px auto 60px auto;
+      padding: 20px 25px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Judul */
+    h1 {
+      color: #003049;
+      margin-bottom: 30px;
+      font-size: 2.4rem;
+      border-bottom: 4px solid #f77f00;
+      padding-bottom: 10px;
+      max-width: 300px;
+    }
+
+    /* Card berita */
+    .berita-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 7px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease;
+      background-color: #fff;
+    }
+    .berita-card:hover {
+      box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    }
+    .berita-title {
+      color: #f77f00;
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+    .berita-date {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 12px;
+    }
+    .berita-content {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #003049;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Desa Kelotok</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="profil.html">Profil Desa</a></li>
+      <li><a href="data.html">Data Penduduk</a></li>
+      <li><a href="berita.html" class="active">Berita & Pengumuman</a></li>
+      <li><a href="galeri.html">Galeri Foto</a></li>
+      <li><a href="layanan.html">Layanan & Pelayanan</a></li>
+      <li><a href="aspirasi.html">Aspirasi & Pengaduan</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Berita & Pengumuman</h1>
+
+    <article class="berita-card">
+      <h2 class="berita-title">Pemberitahuan Pelaksanaan Vaksinasi Massal</h2>
+      <div class="berita-date">9 Juni 2025</div>
+      <p class="berita-content">
+        Pemerintah Desa Kelotok akan mengadakan vaksinasi COVID-19 massal pada tanggal 20 Juni 2025 di Balai Desa. 
+        Diharapkan seluruh warga Desa Kelotok untuk hadir dan membawa kartu identitas.
+      </p>
+    </article>
+
+    <article class="berita-card">
+      <h2 class="berita-title">Pembangunan Jalan Baru di Dusun 2</h2>
+      <div class="berita-date">1 Juni 2025</div>
+      <p class="berita-content">
+        Proyek pembangunan jalan utama di Dusun 2 telah dimulai dan diperkirakan selesai dalam waktu 3 bulan. 
+        Harap warga bersabar selama proses pembangunan berlangsung.
+      </p>
+    </article>
+
+    <article class="berita-card">
+      <h2 class="berita-title">Pengumuman Penyaluran Bantuan Sosial</h2>
+      <div class="berita-date">28 Mei 2025</div>
+      <p class="berita-content">
+        Bantuan sosial untuk keluarga kurang mampu akan disalurkan mulai tanggal 10 Juni 2025 di kantor desa. 
+        Pastikan membawa dokumen lengkap dan mengikuti protokol kesehatan.
+      </p>
+    </article>
+
+     <article class="berita-card">
+      <h2 class="berita-title">Sumur-sumur pada kering</h2>
+      <div class="berita-date">28 Mei 2025</div>
+      <p class="berita-content">
+        Bantuan sosial untuk keluarga kurang mampu akan disalurkan mulai tanggal 10 Juni 2025 di kantor desa. 
+        Pastikan membawa dokumen lengkap dan mengikuti protokol kesehatan.
+      </p>
+    </article>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Desa Kelotok. All rights reserved.
+  </footer>
+
+  <script>
+    // Navbar toggle untuk mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desa Kelotok - Layanan & Pelayanan</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f9f9f9;
+      color: #2a2a2a;
+      line-height: 1.6;
+    }
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #003049;
+      padding: 10px 25px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    .navbar .nav-links li a {
+      color: #dbe9f4;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .navbar .nav-links li a:hover,
+    .navbar .nav-links li a.active {
+      background-color: #f77f00;
+      color: white;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .navbar .nav-links {
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background-color: #003049;
+        width: 200px;
+        height: calc(100% - 60px);
+        padding-top: 20px;
+        gap: 20px;
+        transition: right 0.3s ease;
+      }
+      .navbar .nav-links.show {
+        right: 0;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto 60px auto;
+      padding: 20px 25px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #003049;
+      margin-bottom: 25px;
+      font-size: 2.4rem;
+      border-bottom: 4px solid #f77f00;
+      padding-bottom: 10px;
+      max-width: 350px;
+    }
+
+    .service-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .service-item {
+      background: #f0f0f0;
+      margin-bottom: 15px;
+      padding: 18px 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: background-color 0.3s ease;
+      cursor: default;
+    }
+    .service-item:hover {
+      background-color: #ffe8cc;
+    }
+    .service-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #d35400;
+      margin-bottom: 6px;
+    }
+    .service-desc {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 8px;
+    }
+    .service-contact {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    footer {
+      background-color: #003049;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">Desa Kelotok</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="profil.html">Profil Desa</a></li>
+      <li><a href="data.html">Data Penduduk</a></li>
+      <li><a href="berita.html">Berita & Pengumuman</a></li>
+      <li><a href="galeri.html">Galeri Foto</a></li>
+      <li><a href="layanan.html" class="active">Layanan & Pelayanan</a></li>
+      <li><a href="aspirasi.html">Aspirasi & Pengaduan</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Layanan & Pelayanan Desa Kelotok</h1>
+
+    <ul class="service-list">
+      <li class="service-item">
+        <div class="service-title">Pengurusan Surat Keterangan</div>
+        <div class="service-desc">Layanan pembuatan Surat Keterangan Domisili, Surat Tidak Mampu, Surat Pengantar, dan lainnya.</div>
+        <div class="service-contact">Hubungi kantor desa atau via WhatsApp: 0812-3456-7890</div>
+      </li>
+      <li class="service-item">
+        <div class="service-title">Pelayanan Kesehatan</div>
+        <div class="service-desc">Posyandu dan pemeriksaan kesehatan gratis untuk warga Desa Kelotok.</div>
+        <div class="service-contact">Jadwal dan lokasi posyandu diumumkan setiap bulan.</div>
+      </li>
+      <li class="service-item">
+        <div class="service-title">Pendaftaran Kelahiran dan Kematian</div>
+        <div class="service-desc">Pencatatan administrasi kelahiran dan kematian warga desa secara resmi.</div>
+        <div class="service-contact">Datang langsung ke kantor desa pada jam kerja.</div>
+      </li>
+      <li class="service-item">
+        <div class="service-title">Pembuatan Kartu Keluarga & KTP</div>
+        <div class="service-desc">Layanan bantuan pengurusan Kartu Keluarga dan KTP bagi warga.</div>
+        <div class="service-contact">Pastikan membawa dokumen pendukung saat mengajukan.</div>
+      </li>
+      <li class="service-item">
+        <div class="service-title">Pelayanan Pengaduan dan Aspirasi</div>
+        <div class="service-desc">Warga dapat mengajukan aspirasi atau pengaduan langsung ke kantor desa atau via website.</div>
+        <div class="service-contact">Kontak: layanan@desakelotok.id atau WhatsApp 0812-3456-7890</div>
+      </li>
+      <li class="service-item">
+        <div class="service-title">Pelayanan Administrasi Lainnya</div>
+        <div class="service-desc">Pengurusan izin usaha, surat jalan, dan dokumen administrasi lainnya.</div>
+        <div class="service-contact">Konsultasi langsung di kantor desa.</div>
+      </li>
+    </ul>
+  </div>
+
+  <footer>
+    &copy; 2025 Desa Kelotok. All rights reserved.
+  </footer>
+
+  <script>
+    // Navbar toggle mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
+
+</body>
+</html>

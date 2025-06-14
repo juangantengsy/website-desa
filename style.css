@@ -1,0 +1,172 @@
+/* style.css - styling utama Desa Kelotok */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f7f9fc;
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+header {
+  background-color: #003049;
+  color: white;
+  padding: 20px 30px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+  letter-spacing: 2px;
+}
+
+header p {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #a8c0d8;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 25px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #dbe9f4;
+  font-weight: 600;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background-color: #f77f00;
+  color: white;
+}
+
+main {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+main section {
+  margin-bottom: 40px;
+  background-color: white;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+main section h2 {
+  margin-bottom: 18px;
+  color: #003049;
+  border-left: 5px solid #f77f00;
+  padding-left: 12px;
+  font-size: 1.8rem;
+}
+
+main section p,
+main section ul {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+main section ul li {
+  margin-left: 20px;
+  margin-bottom: 6px;
+}
+
+main section article {
+  margin-bottom: 18px;
+}
+
+main section article h3 {
+  font-weight: 700;
+  color: #0077b6;
+  margin-bottom: 6px;
+}
+
+main section article p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+main section article a {
+  color: #f77f00;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+main section article a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background-color: #003049;
+  color: #cfd8dc;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 0.9rem;
+  margin-top: 40px;
+  user-select: none;
+}
+
+/* Tombol scroll to top */
+#scrollTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 35px;
+  right: 35px;
+  background-color: #f77f00;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+  z-index: 1100;
+}
+
+#scrollTopBtn:hover {
+  background-color: #d96400;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+  main {
+    padding: 0 15px;
+  }
+  main section {
+    padding: 18px 20px;
+  }
+}

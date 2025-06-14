@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desa Kelotok - Aspirasi & Pengaduan</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f9f9f9;
+      color: #2a2a2a;
+      line-height: 1.6;
+    }
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #003049;
+      padding: 10px 25px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    .navbar .nav-links li a {
+      color: #dbe9f4;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .navbar .nav-links li a:hover,
+    .navbar .nav-links li a.active {
+      background-color: #f77f00;
+      color: white;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .navbar .nav-links {
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background-color: #003049;
+        width: 200px;
+        height: calc(100% - 60px);
+        padding-top: 20px;
+        gap: 20px;
+        transition: right 0.3s ease;
+      }
+      .navbar .nav-links.show {
+        right: 0;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 30px auto 60px auto;
+      padding: 25px 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #003049;
+      margin-bottom: 25px;
+      font-size: 2.4rem;
+      border-bottom: 4px solid #f77f00;
+      padding-bottom: 10px;
+      max-width: 350px;
+    }
+
+    form label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #444;
+    }
+    form input[type="text"],
+    form input[type="email"],
+    form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    form input[type="text"]:focus,
+    form input[type="email"]:focus,
+    form textarea:focus {
+      border-color: #f77f00;
+      outline: none;
+    }
+
+    form button {
+      background-color: #f77f00;
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    form button:hover {
+      background-color: #d95f00;
+    }
+
+    .info-text {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background-color: #003049;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">Desa Kelotok</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="profil.html">Profil Desa</a></li>
+      <li><a href="data.html">Data Penduduk</a></li>
+      <li><a href="berita.html">Berita & Pengumuman</a></li>
+      <li><a href="galeri.html">Galeri Foto</a></li>
+      <li><a href="layanan.html">Layanan & Pelayanan</a></li>
+      <li><a href="aspirasi.html" class="active">Aspirasi & Pengaduan</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Aspirasi & Pengaduan</h1>
+
+    <p class="info-text">Silakan isi formulir berikut untuk menyampaikan aspirasi, saran, atau pengaduan Anda kepada pemerintah Desa Kelotok. Kami akan menindaklanjuti secepatnya.</p>
+
+    <form id="aspirasiForm">
+      <label for="nama">Nama Lengkap</label>
+      <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap Anda" />
+
+      <label for="email">Email (opsional)</label>
+      <input type="email" id="email" name="email" placeholder="Masukkan email Anda" />
+
+      <label for="judul">Judul Aspirasi / Pengaduan</label>
+      <input type="text" id="judul" name="judul" required placeholder="Judul singkat aspirasi atau pengaduan" />
+
+      <label for="pesan">Pesan / Uraian</label>
+      <textarea id="pesan" name="pesan" rows="6" required placeholder="Tuliskan aspirasi atau pengaduan secara lengkap"></textarea>
+
+      <button type="submit">Kirim</button>
+    </form>
+
+    <div id="responseMessage" style="margin-top: 20px; font-weight: 600;"></div>
+  </div>
+
+  <footer>
+    &copy; 2025 Desa Kelotok. All rights reserved.
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    // Form submit handler (dummy, simulate success)
+    const form = document.getElementById('aspirasiForm');
+    const responseMessage = document.getElementById('responseMessage');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Ambil data form
+      const nama = form.nama.value.trim();
+      const email = form.email.value.trim();
+      const judul = form.judul.value.trim();
+      const pesan = form.pesan.value.trim();
+
+      if (!nama || !judul || !pesan) {
+        responseMessage.style.color = 'red';
+        responseMessage.textContent = 'Mohon lengkapi semua field yang wajib diisi.';
+        return;
+      }
+
+      // Simulasi pengiriman
+      responseMessage.style.color = 'green';
+      responseMessage.textContent = 'Terima kasih atas aspirasi atau pengaduan Anda. Kami akan menindaklanjuti secepatnya.';
+
+      // Reset form
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
